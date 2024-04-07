@@ -1,7 +1,7 @@
 from sklearn.feature_selection import RFE
 import pandas as pd
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
-
+import matplotlib.pyplot as plt
 
 def feature_selection_using_rfe_on_accuracy(Model, X_train_data, Y_train_data, X_test_data, Y_test_data):
     num_features = []
