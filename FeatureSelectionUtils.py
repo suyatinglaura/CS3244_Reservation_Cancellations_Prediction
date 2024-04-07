@@ -80,7 +80,7 @@ def feature_selection_using_rfe_on_f1score(Model, X_train_data, Y_train_data, X_
         num_features.append(n)
 
         if f1score > bestF1Score:
-            bestF1Score = f1_score
+            bestF1Score = f1score
             currentBestRFE = rfe
             df_features = pd.DataFrame({
             'attribute': X_train_data.columns,
