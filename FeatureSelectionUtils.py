@@ -101,3 +101,95 @@ def feature_selection_using_rfe_on_f1score(Model, X_train_data, Y_train_data, X_
     print("Best F1 Score: ", bestF1Score)
     print("Best Number Of Features: ", currentBestRFE.n_features_to_select)
     return df_features
+
+# forward selection based on accuracy_score comparisons
+def forward_selection_with_metrics(X_train, y_train, X_test, y_test, model, total_features=None):
+    """
+    Perform forward selection for feature selection with a given machine learning model.
+
+    Parameters:
+    - X_train (array-like): Input features for training.
+    - y_train (array-like): Target variable for training.
+    - X_test (array-like): Input features for testing.
+    - y_test (array-like): Target variable for testing.
+    - model: Machine learning model object with fit and predict methods.
+    - total_features (int): Total number of features to be selected. If None, select until no further improvement.
+
+    Returns:
+    - selected_features (list): List of selected feature indices.
+    """
+    selected_features = []
+    best_accuracy = 0
+    total_features = len(X_train.columns)
+    # Convert DataFrame to NumPy array
+    y_train_array = y_train.values.ravel()
+
+    while len(selected_features) < total_features:
+        best_feature = None
+        for feature in X_train.columns:
+            if feature not in selected_features:
+                trial_features = selected_features + [feature]
+                # Train the ML model with trial_features
+                model.fit(X_train[trial_features], y_train_array)
+                # Evaluate model performance using accuracy_score
+                y_pred = model.predict(X_test[trial_features])
+                accuracy = accuracy_score(y_test, y_pred)
+                # Check if accuracy improved
+                if accuracy > best_accuracy:
+                    best_accuracy = accuracy
+                    best_feature = feature
+
+        # If a new feature improves performance, add it to selected_features
+        if best_feature is not None:
+            selected_features.append(best_feature)
+        else:
+            # No further improvement can be made
+            break
+
+    print("Selected features:", selected_features)
+    print("Best accuracy:", best_accuracy)
+
+    return selected_features
+
+#backward elimination based on accuracy_score comparison
+def backward_elimination_with_metrics(X_train, y_train, X_test, y_test, model, threshold=0, verbose=False):
+    """
+    Perform backward elimination for feature selection with a given machine learning model.
+
+    Parameters:
+    - X_train (array-like): Input features for training.
+    - y_train (array-like): Target variable for training.
+    - X_test (array-like): Input features for testing.
+    - y_test (array-like): Target variable for testing.
+    - model: Machine learning model object with fit and predict methods.
+    - threshold (float): Minimum improvement threshold to continue removing features.
+    - verbose (bool): Whether to print progress information.
+
+    Returns:
+    - selected_features (list): List of selected feature indices.
+    """
+    y_train_array = y_train.values.ravel()
+    selected_features = list(X_train.columns)
+    best_accuracy = accuracy_score(y_test, model.fit(X_train, y_train_array).predict(X_test))
+    improvement = True
+
+    while improvement:
+        improvement = False
+        for feature in selected_features:
+            trial_features = selected_features.copy()
+            trial_features.remove(feature)
+            model.fit(X_train[trial_features], y_train_array)
+            y_pred = model.predict(X_test[trial_features])
+            accuracy = accuracy_score(y_test, y_pred)
+
+            if accuracy > best_accuracy + threshold:
+                selected_features.remove(feature)
+                best_accuracy = accuracy
+                improvement = True
+                if verbose:
+                    print(f"Removed feature {feature}, Accuracy: {accuracy}")
+    
+    print("Selected features:", selected_features)
+    print("Best accuracy:", best_accuracy)
+   
+    return selected_features
