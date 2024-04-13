@@ -6,7 +6,23 @@ from sklearn.inspection import permutation_importance
 from sklearn.feature_selection import RFECV, SelectKBest, mutual_info_classif
 from sklearn.model_selection import StratifiedKFold
 
+
+
 def feature_selection_using_rfecv_on_f1score(Model, X_train_data, Y_train_data):
+    """
+    Performs Recursive Feature Elimination with Cross-Validation (RFECV) to select features based on the F1 score.
+    
+    This function applies RFECV to a provided classifier model to determine the optimal number of features that
+    maximizes the F1 score during cross-validation. It visualizes the model's performance as the number of features varies.
+
+    Parameters:
+    - Model : A scikit-learn-compatible classifier.
+    - X_train_data : DataFrame, feature set for training.
+    - Y_train_data : DataFrame/Series, target variable for training.
+    
+    Returns:
+    - df_features : DataFrame containing the features, whether they are selected, and their ranking.
+    """
     steps = 1
     cv = StratifiedKFold(5)
     # Initialize RFECV with the model and desired parameters
@@ -36,6 +52,20 @@ def feature_selection_using_rfecv_on_f1score(Model, X_train_data, Y_train_data):
     return df_features
 
 def feature_selection_using_rfecv_on_accuracyscore(Model, X_train_data, Y_train_data):
+     """
+    Performs Recursive Feature Elimination with Cross-Validation (RFECV) to select features based on the Accuracy score.
+    
+    This function applies RFECV to a provided classifier model to determine the optimal number of features that
+    maximizes the Accuracy score during cross-validation. It visualizes the model's performance as the number of features varies.
+
+    Parameters:
+    - Model : A scikit-learn-compatible classifier.
+    - X_train_data : DataFrame, feature set for training.
+    - Y_train_data : DataFrame/Series, target variable for training.
+    
+    Returns:
+    - df_features : DataFrame containing the features, whether they are selected, and their ranking.
+    """
     steps = 1
     cv = StratifiedKFold(5)
     # Initialize RFECV with the model and desired parameters

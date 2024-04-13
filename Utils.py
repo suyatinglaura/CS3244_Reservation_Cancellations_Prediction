@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.metrics import mutual_info_score
 
+# Plot comparision of metrics between models
 def plotMetricsGraphComparison(metrics):
     fig, axs = plt.subplots(2, 2, figsize=(15, 10))
     axs = axs.flatten()
