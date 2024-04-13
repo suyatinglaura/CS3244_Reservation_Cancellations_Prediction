@@ -1,108 +1,40 @@
-from sklearn.feature_selection import RFE
 import pandas as pd
 import numpy as np
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 import matplotlib.pyplot as plt
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 from sklearn.inspection import permutation_importance
+from sklearn.feature_selection import RFECV
+from sklearn.model_selection import StratifiedKFold
 
-def feature_selection_using_rfe_on_accuracy(Model, X_train_data, Y_train_data, X_test_data, Y_test_data):
-    num_features = []
-    accuracies = []
-
-    bestAccuracy = 0
-    currentBestRFE = None
-    df_features = pd.DataFrame({
-    'attribute': X_train_data.columns,
-    'selected': None,
-    'ranking': 0
-    })
-
-    # Iterate over a range of desired features
-    for n in range(1, X_train_data.shape[1], 5):  # Adjust the step size and range as necessary
-        # RFE with random Forest
-        rfe = RFE(estimator=Model, n_features_to_select=n)
-        rfe.fit(X_train_data, Y_train_data.values.ravel())
-
-        # Predict on the test set
-        y_pred = rfe.predict(X_test_data)
-
-        # Calculate accuracy and store the result
-        accuracy = accuracy_score(Y_test_data, y_pred)
-        accuracies.append(accuracy)
-        num_features.append(n)
-
-        if accuracy > bestAccuracy:
-            bestAccuracy = accuracy
-            currentBestRFE = rfe
-            df_features = pd.DataFrame({
-            'attribute': X_train_data.columns,
-            'selected': rfe.support_,
-            'ranking': rfe.ranking_
-            })
-
+def feature_selection_using_rfecv_on_f1score(Model, X_train_data, Y_train_data):
+    steps = 1
+    cv = StratifiedKFold(5)
+    # Initialize RFECV with the model and desired parameters
+    rfecv = RFECV(estimator=Model, step=steps, cv=cv, scoring="f1", min_features_to_select=1, n_jobs=-1)
+    rfecv.fit(X_train_data, Y_train_data.values.ravel())
     
-    # Plotting
+    n_scores = len(rfecv.cv_results_["mean_test_score"])
+    
+    # Visualize the optimal number of features
     plt.figure(figsize=(10, 6))
-    plt.plot(num_features, accuracies, marker='o', linestyle='-', color='b')
-    plt.title('Model Performance vs. Number of Features')
-    plt.xlabel('Number of Features Selected')
-    plt.ylabel('Accuracy')
+    plt.title("Model Performance vs. Number of Features")
+    plt.xlabel("Number of Features Selected")
+    plt.ylabel("Cross-Validation Score")
+    plt.plot(range(1, (n_scores * steps) + 1, steps), rfecv.cv_results_["mean_test_score"], marker='o')
+    plt.xticks(np.arange(0, (n_scores * steps) + 1, 5))
     plt.grid(True)
     plt.show()
-    
-    print("Best Accuracy: ", bestAccuracy)
-    print("Best Number Of Features: ", currentBestRFE.n_features_to_select)
-    return df_features
 
-
-def feature_selection_using_rfe_on_f1score(Model, X_train_data, Y_train_data, X_test_data, Y_test_data):
-    num_features = []
-    f1scores = []
-
-    bestF1Score = 0
-    currentBestRFE = None
+    # Gather selected features into a DataFrame
     df_features = pd.DataFrame({
-    'attribute': X_train_data.columns,
-    'selected': None,
-    'ranking': 0
+        "attribute": X_train_data.columns,
+        "selected": rfecv.support_,
+        "ranking": rfecv.ranking_
     })
 
-    # Iterate over a range of desired features
-    for n in range(1, X_train_data.shape[1], 5):  # Adjust the step size and range as necessary
-        # RFE with random Forest
-        rfe = RFE(estimator=Model, n_features_to_select=n)
-        rfe.fit(X_train_data, Y_train_data.values.ravel())
-
-        # Predict on the test set
-        y_pred = rfe.predict(X_test_data)
-
-        # Calculate f1 scores and store the result
-        f1score = f1_score(Y_test_data, y_pred)
-        f1scores.append(f1score)
-        num_features.append(n)
-
-        if f1score > bestF1Score:
-            bestF1Score = f1score
-            currentBestRFE = rfe
-            df_features = pd.DataFrame({
-            'attribute': X_train_data.columns,
-            'selected': rfe.support_,
-            'ranking': rfe.ranking_
-            })
-
-    
-    # Plotting
-    plt.figure(figsize=(10, 6))
-    plt.plot(num_features, f1scores, marker='o', linestyle='-', color='b')
-    plt.title('Model Performance vs. Number of Features')
-    plt.xlabel('Number of Features Selected')
-    plt.ylabel('F1 Scores')
-    plt.grid(True)
-    plt.show()
-    
-    print("Best F1 Score: ", bestF1Score)
-    print("Best Number Of Features: ", currentBestRFE.n_features_to_select)
+    print("Optimal number of features based on F1 Score: %d" % rfecv.n_features_)
     return df_features
+
 
 # forward selection based on accuracy_score comparisons
 def forward_selection_with_metrics(X_train, y_train, X_test, y_test, model, total_features=None):
