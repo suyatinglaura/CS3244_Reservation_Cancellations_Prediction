@@ -1,5 +1,7 @@
-
+import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.metrics import mutual_info_score
 
 def plotMetricsGraphComparison(metrics):
     fig, axs = plt.subplots(2, 2, figsize=(15, 10))
@@ -25,3 +27,26 @@ def plotMetricsGraphComparison(metrics):
     plt.tight_layout()
     plt.show()
 
+# Plot the correlation heatmap
+def plot_corrlation_heatmap(data):
+    plt.figure(figsize=(10, 8))  # Adjust the figure size as needed
+    sns.heatmap(data.corr(), annot=True, cmap='coolwarm', fmt=".2f")
+    plt.title('Correlation Heatmap of Numerical Variables')
+    plt.show()
+
+# plot mutual information heatmap
+def plot_mi_heatmap(data):
+    # calculate mutual information
+    def calculate_mutual_info(df, col1, col2):
+        return mutual_info_score(df[col1], df[col2])
+
+    # plot heatmap
+    mi_matrix = pd.DataFrame(index=data.columns, columns=data.columns)
+    for i in data.columns:
+        for j in data.columns:
+            mi_matrix.loc[i, j] = calculate_mutual_info(data, i, j)
+
+    plt.figure(figsize=(20, 16))  # Adjust the figure size if needed
+    sns.heatmap(mi_matrix.astype(float), cmap='coolwarm', fmt='.2f')
+    plt.title('Mutual Information Heatmap')
+    plt.show()
