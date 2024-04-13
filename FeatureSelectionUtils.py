@@ -217,3 +217,14 @@ def compute_permutation_importance(model, X_train, Y_train):
     # Get indices that would sort feature importances
     sorted_indices = np.argsort(feature_importances)
     return feature_importances[sorted_indices], feature_names[sorted_indices]
+
+def plot_feature_importance(feature_importance, feature_names):
+    """
+    Plotting feature importance.
+    """
+    plt.figure(figsize=(10, 6))
+    plt.barh(feature_names, feature_importance)
+    plt.xlabel('Feature Importance')
+    plt.ylabel('Feature')
+    plt.title('Feature Importance')
+    plt.show()
