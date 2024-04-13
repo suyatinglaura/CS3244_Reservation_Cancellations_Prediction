@@ -1,7 +1,9 @@
 from sklearn.feature_selection import RFE
 import pandas as pd
+import numpy as np
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 import matplotlib.pyplot as plt
+from sklearn.inspection import permutation_importance
 
 def feature_selection_using_rfe_on_accuracy(Model, X_train_data, Y_train_data, X_test_data, Y_test_data):
     num_features = []
@@ -193,3 +195,25 @@ def backward_elimination_with_metrics(X_train, y_train, X_test, y_test, model, t
     print("Best accuracy:", best_accuracy)
    
     return selected_features
+
+def compute_permutation_importance(model, X_train, Y_train):
+    """
+    Compute permutation importance for tree-based model.
+
+    Parameters:
+    - model: Machine learning model object with fit and predict methods.
+    - X_train: Input features for training.
+    - y_train: Target variable for training.
+
+    Returns:
+    - feature_importances (list): List of feature importance scores sorted in increasing order.
+    - feature_names (list): List of feature names sorted based on feature importance scores.
+    """
+    pi_result = permutation_importance(model, X_train, Y_train.values.ravel(), random_state=47, n_repeats=10)
+    # Get feature importance score
+    feature_importances = pi_result['importances_mean']
+    # Get feature names
+    feature_names = X_train.columns
+    # Get indices that would sort feature importances
+    sorted_indices = np.argsort(feature_importances)
+    return feature_importances[sorted_indices], feature_names[sorted_indices]
