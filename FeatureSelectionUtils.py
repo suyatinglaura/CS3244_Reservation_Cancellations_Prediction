@@ -52,7 +52,7 @@ def feature_selection_using_rfecv_on_f1score(Model, X_train_data, Y_train_data):
     return df_features
 
 def feature_selection_using_rfecv_on_accuracyscore(Model, X_train_data, Y_train_data):
-     """
+    """
     Performs Recursive Feature Elimination with Cross-Validation (RFECV) to select features based on the Accuracy score.
     
     This function applies RFECV to a provided classifier model to determine the optimal number of features that

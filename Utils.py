@@ -20,7 +20,7 @@ def plotMetricsGraphComparison(metrics):
         axs[i].set_xticks(metrics['Classification Model'])
         axs[i].set_xticklabels(metrics['Classification Model'], rotation=45)
         for index, value in enumerate(metrics[data]):
-            axs[i].text(index, value, str(round(value, 2)), ha='center', va='bottom')
+            axs[i].text(index, value, str(round(value, 3)), ha='center', va='bottom')
 
     handles, labels = axs[0].get_legend_handles_labels()
     fig.legend(handles, labels, loc='center', bbox_to_anchor=(0.5, -0.03), ncol=len(metrics['Classification Model']))
