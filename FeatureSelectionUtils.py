@@ -9,7 +9,6 @@ from sklearn.model_selection import StratifiedKFold
 def feature_selection_using_rfecv_on_f1score(Model, X_train_data, Y_train_data):
     steps = 1
     cv = StratifiedKFold(5)
-    f1_scorer = make_scorer(f1_score)
     # Initialize RFECV with the model and desired parameters
     rfecv = RFECV(estimator=Model, step=steps, cv=cv, scoring="f1", min_features_to_select=1, n_jobs=-1)
     rfecv.fit(X_train_data, Y_train_data.values.ravel())
@@ -36,34 +35,6 @@ def feature_selection_using_rfecv_on_f1score(Model, X_train_data, Y_train_data):
     print("Optimal number of features based on F1 Score: %d" % rfecv.n_features_)
     return df_features
 
-def feature_selection_using_rfecv_on_rocaucscore(Model, X_train_data, Y_train_data):
-    steps = 1
-    cv = StratifiedKFold(5)
-    # Initialize RFECV with the model and desired parameters
-    rfecv = RFECV(estimator=Model, step=steps, cv=cv, scoring="roc_auc", min_features_to_select=1, n_jobs=-1)
-    rfecv.fit(X_train_data, Y_train_data.values.ravel())
-    
-    n_scores = len(rfecv.cv_results_["mean_test_score"])
-    
-    # Visualize the optimal number of features
-    plt.figure(figsize=(10, 6))
-    plt.title("Model Performance vs. Number of Features")
-    plt.xlabel("Number of Features Selected")
-    plt.ylabel("Cross-Validation Score")
-    plt.plot(range(1, (n_scores * steps) + 1, steps), rfecv.cv_results_["mean_test_score"], marker='o')
-    plt.xticks(np.arange(0, (n_scores * steps) + 1, 5))
-    plt.grid(True)
-    plt.show()
-
-    # Gather selected features into a DataFrame
-    df_features = pd.DataFrame({
-        "attribute": X_train_data.columns,
-        "selected": rfecv.support_,
-        "ranking": rfecv.ranking_
-    })
-
-    print("Optimal number of features based on ROC_AUC Score: %d" % rfecv.n_features_)
-    return df_features
 
 # forward selection based on accuracy_score comparisons
 def forward_selection_with_metrics(X_train, y_train, X_test, y_test, model, total_features=None):
