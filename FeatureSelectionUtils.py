@@ -254,22 +254,22 @@ def select_k_best_with_mutual_info(X_train, y_train, k):
 
     return feature_data
 
-def save_feature_data_to_csv(models_feature_data, model_name):
-    def transform_feature_data(selection_name, feature_data):
-        transformed_df = feature_data.pivot(index=None, columns='feature', values='selected')
-        compressed_row = transformed_df.max(axis=0, skipna=True)
-        compressed_df = pd.DataFrame([compressed_row])
-        compressed_df.insert(0, 'Selection Name', selection_name)
-        return compressed_df
+# def save_feature_data_to_csv(models_feature_data, model_name):
+#     def transform_feature_data(selection_name, feature_data):
+#         transformed_df = feature_data.pivot(index=None, columns='feature', values='selected')
+#         compressed_row = transformed_df.max(axis=0, skipna=True)
+#         compressed_df = pd.DataFrame([compressed_row])
+#         compressed_df.insert(0, 'Selection Name', selection_name)
+#         return compressed_df
 
-    transformed_dfs = [transform_feature_data(model_name, feature_data) for model_name, feature_data in models_feature_data]
+#     transformed_dfs = [transform_feature_data(model_name, feature_data) for model_name, feature_data in models_feature_data]
 
-    final_df = pd.concat(transformed_dfs, ignore_index=True)
-    final_df.to_csv(f"Data/feature_selection/{model_name}_selected_features.csv")
-    return final_df
+#     final_df = pd.concat(transformed_dfs, ignore_index=True)
+#     final_df.to_csv(f"Data/feature_selection/{model_name}_selected_features.csv")
+#     return final_df
 
-def get_selected_features_as_list(df_features):
-    return df_features[df_features['selected'] == True]['feature'].tolist()
+# def get_selected_features_as_list(df_features):
+#     return df_features[df_features['selected'] == True]['feature'].tolist()
 
 def export_final_selected_features_to_csv(features_list, modelName):
     """
