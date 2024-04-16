@@ -270,3 +270,29 @@ def save_feature_data_to_csv(models_feature_data, model_name):
 
 def get_selected_features_as_list(df_features):
     return df_features[df_features['selected'] == True]['feature'].tolist()
+
+def export_final_selected_features_to_csv(features_list, modelName):
+    """
+    Exports the final selected list of features to a CSV file for a model.
+
+    Parameters:
+    features_list (list of str): The list of feature names to export.
+    modelName (str): Name of the Model to be Saved
+    """
+    features_df = pd.DataFrame({'selected_features': features_list})
+    features_df.to_csv(f"FinalModels/Feature_Selection/{modelName}_selected_features.csv", index=False)
+    print(f"Features exported successfully to FinalModels/Feature_Selection/{modelName}")
+
+def import_final_selected_features_from_csv(file_path):
+    """
+    Imports a list of features from a CSV file.
+
+    Parameters:
+    file_path (str): The path to the CSV file to import the features from.
+
+    Returns:
+    list of str: selected features from model
+    """
+    features_df = pd.read_csv(file_path)
+    # print(f"Imported features from {file_path} successfully")
+    return features_df['selected_features'].tolist()
