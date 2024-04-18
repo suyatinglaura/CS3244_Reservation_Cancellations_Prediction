@@ -1,0 +1,26 @@
+selected_features
+cancellation_type_all_successful
+cancellation_type_no_booking
+lead_time_cat_0 to 50
+lead_time_cat_150 to 200
+lead_time_cat_200 to 300
+lead_time_cat_50 to 100
+lead_time_cat_greater than 300
+avg_price_per_room_cat_0 to 50
+avg_price_per_room_cat_100 to 150
+avg_price_per_room_cat_50 to 100
+booking_dayofweek_3
+solo_traveller
+have_special_requests
+num_of_customers_and_room_type_mismatch
+no_of_customers_scaled
+no_of_nights_scaled
+market_segment_type_corporate
+market_segment_type_online
+required_car_parking_space
+repeated_guest
+no_of_adults_scaled
+no_of_week_nights_scaled
+no_of_special_requests_scaled
+lead_time_scaled
+avg_price_per_room_scaled
