@@ -296,3 +296,6 @@ def import_final_selected_features_from_csv(file_path):
     features_df = pd.read_csv(file_path)
     # print(f"Imported features from {file_path} successfully")
     return features_df['selected_features'].tolist()
+
+def get_selected_features_as_list(df_features):
+    return df_features[df_features['selected'] == True]['feature'].tolist()
