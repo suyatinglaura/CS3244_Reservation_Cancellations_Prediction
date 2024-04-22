@@ -29,7 +29,7 @@ def plotMetricsGraphComparison(metrics):
     plt.show()
 
 # Plot the correlation heatmap
-def plot_corrlation_heatmap(data):
+def plot_correlation_heatmap(data):
     plt.figure(figsize=(10, 8))  # Adjust the figure size as needed
     sns.heatmap(data.corr(), annot=True, cmap='coolwarm', fmt=".2f")
     plt.title('Correlation Heatmap of Numerical Variables')
@@ -47,7 +47,7 @@ def plot_mi_heatmap(data):
         for j in data.columns:
             mi_matrix.loc[i, j] = calculate_mutual_info(data, i, j)
 
-    plt.figure(figsize=(20, 16))  # Adjust the figure size if needed
-    sns.heatmap(mi_matrix.astype(float), cmap='coolwarm', fmt='.2f')
+    plt.figure(figsize=(10, 8))  # Adjust the figure size if needed
+    sns.heatmap(mi_matrix.astype(float), annot=True, cmap='coolwarm', fmt='.2f')
     plt.title('Mutual Information Heatmap')
     plt.show()
