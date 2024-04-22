@@ -1,0 +1,11 @@
+selected_features
+lead_time_scaled
+market_segment_type_online
+avg_price_per_room_scaled
+have_special_requests
+no_of_special_requests_scaled
+num_of_customers_and_room_type_mismatch
+required_car_parking_space
+perc_weekday_nights_scaled
+no_of_week_nights_scaled
+booking_dayofweek_1
