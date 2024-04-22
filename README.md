@@ -7,7 +7,7 @@
 5. [Feature Engineering Notebook](/5%20-%20Feature%20Engineering.ipynb)
 6. Applying Feature Selection + Hyperparameter Tuning On Individual Models
    1. [Logistic Regression Notebook](/6.1%20-%20Logistic%20Regression.ipynb)
-   2. [K Nearest Neighbour Notebook](/6.2%20-%20K%20Nearest%Neighbour.ipynb)
+   2. [K Nearest Neighbour Notebook](/6.2%20-%20K%20Nearest%20Neighbour.ipynb)
    3. [Decision Tree Notebook](/6.3%20-%20Decision%20Tree.ipynb)
    4. [Support Vector Machine Notebook](/6.4%20-%20SVM.ipynb)
    5. [Random Forest Notebook](/6.5%20-%20Random%20Forest.ipynb)
