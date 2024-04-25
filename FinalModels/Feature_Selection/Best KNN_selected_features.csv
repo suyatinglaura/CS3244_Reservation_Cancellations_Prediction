@@ -1,0 +1,25 @@
+selected_features
+solo_traveller
+avg_price_per_room_cat_200 to 300
+room_type_reserved_room_type 6
+room_type_reserved_room_type 1
+market_segment_type_corporate
+avg_price_per_room_cat_150 to 200
+room_type_reserved_room_type 4
+type_of_meal_plan_meal plan 1
+required_car_parking_space
+no_of_previous_cancellations_scaled
+no_of_previous_bookings_scaled
+lead_time_cat_100 to 150
+no_of_previous_bookings_not_canceled_scaled
+perc_adults_scaled
+avg_price_per_room_cat_50 to 100
+previous_cancellation_rate_scaled
+avg_price_per_room_cat_100 to 150
+have_special_requests
+lead_time_cat_150 to 200
+market_segment_type_offline
+market_segment_type_online
+avg_price_per_room_scaled
+no_of_special_requests_scaled
+lead_time_scaled
