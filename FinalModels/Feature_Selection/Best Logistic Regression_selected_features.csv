@@ -1,0 +1,23 @@
+selected_features
+arrival_dayofweek_3
+cancellation_type_no_booking
+room_type_reserved_room_type 7
+no_of_previous_cancellations_scaled
+booking_dayofweek_0
+booking_dayofweek_5
+lead_time_cat_greater than 300
+type_of_meal_plan_meal plan 1
+avg_price_per_room_cat_0 to 50
+avg_price_per_room_cat_200 to 300
+lead_time_cat_200 to 300
+avg_price_per_room_cat_50 to 100
+lead_time_cat_100 to 150
+required_car_parking_space
+perc_weekday_nights_scaled
+avg_price_per_room_scaled
+lead_time_cat_50 to 100
+have_special_requests
+market_segment_type_online
+market_segment_type_offline
+no_of_special_requests_scaled
+lead_time_scaled
