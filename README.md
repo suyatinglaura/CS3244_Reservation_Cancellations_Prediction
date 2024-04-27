@@ -1,4 +1,13 @@
 # Predicting Hotel Reservation Cancellations
+## Group Members
+| Student Name | Matriculation Number |
+|----------|----------|
+| Dylan Siew | A0290356B |
+| Jin Jianzuo | A0239999W |
+| Liang Hanyu | A0211240E |
+| Soh Zu Wei | A0290367X |
+| Su Yating | A0211194N |
+
 ## How To Navigate Project:
 0. [Introduction](/0%20-%20Introduction.ipynb)
 1. [Data Cleaning Notebook](/1%20-%20Data%20Cleaning.ipynb)
@@ -16,6 +25,10 @@
    7. [Gradient Boost Notebook](/6.7%20-%20Gradient%20Boosting.ipynb)
    8. [LightGBM Notebook](/6.8%20-%20LightGBM.ipynb)
 7.  [Final Model Comparisons + Conclusion Notebook](/7%20-%20Model%20Comparison,%20Final%20Model%20and%20Conclusion.ipynb)
+
+Besides, there are 2 files providing helper functions to use in the above notebooks:
+1. [Helper Functions used for General Purposes](Utils.py)
+2. [Helper Functions used for Feature Selection](FeatureSelectionUtils.py)
    
 ## Problem Background:
 Almost 40% of hotel rooms booked online are cancelled before the guest arrives...[1] That’s 2 in every 5 booking! 
@@ -37,5 +50,3 @@ Therefore, it is crucial for the hotel management to be able to anticipate custo
 Link to dataset: https://www.kaggle.com/datasets/ahsan81/hotel-reservations-classification-dataset
 
 [1] HospitalityTech, “Global cancellation rate of hotel reservations reaches 40% on average,” Hospitality Technology, https://hospitalitytech.com/global-cancellation-rate-hotel-reservations-reaches-40-average (accessed Apr. 16, 2024).
-
-
