@@ -1,5 +1,6 @@
 # Predicting Hotel Reservation Cancellations
 ## How To Navigate Project:
+0. [Introduction](/0%20-%20Introduction.ipynb)
 1. [Data Cleaning Notebook](/1%20-%20Data%20Cleaning.ipynb)
 2. [Exploratory Data Analyis Notebook](/2%20-%20Data%20Exploration.ipynb)
 3. [Data Pre-processing Notebook](/3%20-%20Data%20Pre-Processing.ipynb)
