@@ -14,8 +14,8 @@
    6. [Adaboost Notebook](/6.6%20-%20Adaboost.ipynb)
    7. [Gradient Boost Notebook](/6.7%20-%20Gradient%20Boosting.ipynb)
    8. [LightGBM Notebook](/6.8%20-%20LightGBM.ipynb)
-7.  [Ensembling and Model Comparison](/7%20-%20Ensembling%20and%20Model%20Comparison.ipynb)
-
+7.  [Final Model Comparisons + Conclusion Notebook](/7%20-%20Model%20Comparison,%20Final%20Model%20and%20Conclusion.ipynb)
+   
 ## Problem Background:
 Almost 40% of hotel rooms booked online are cancelled before the guest arrives...[1] That’s 2 in every 5 booking! 
 
