@@ -23,9 +23,7 @@ Almost 40% of hotel rooms booked online are cancelled before the guest arrives..
 Online hotel room reservation systems offer significant convenience to both customers and hotel management. 
 However, this also made it much easier for customers to cancel their reservation at the click of a button. 
 ## Project's Motivation:
-Revenue Lost & Operational Challenges. For example, hotels may find themselves understaffed or overstaffed based on inaccurate forecasts of occupancy. Resource allocation such as provisioning of amenities or scheduling of services is less efficient, leading to resource waste. 
-
-Furthermore, these cancelled rooms could have been allocated to other customers genuinely in need of accommodation. 
+Reservation cancellations not only result in lost revenue for the hotels but also create other operational challenges. For example, hotels may find themselves understaffed or overstaffed based on inaccurate forecasts of occupancy. Resource allocation such as provisioning of amenities or scheduling of services is less efficient, leading to resource waste. Furthermore, these cancelled rooms could have been allocated to other customers genuinely in need of accommodation.
 
 Therefore, it is crucial for the hotel management to be able to anticipate customer cancellation and take proactive measures to mitigate its impact.
 ## Problem Statement:
